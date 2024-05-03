@@ -1,0 +1,43 @@
+<div class="container-fluid p-5">
+  <h1>Inserir uma tarefa</h1>
+<form [formGroup]="tarefaForm" (ngSubmit)="inserirTarefa()" class="row g-3 mb-3">
+    <div class="col-auto">
+      <label for="inputPassword2" class="visually">Tarefa</label>
+      <input type="text" class="form-control" id="inputPassword2" placeholder="Tarefa" formControlName="nome">
+    </div>
+    <div class="col-auto">
+        <label for="inputPassword2" class="visually">Descrição</label>
+        <input type="text" class="form-control" id="inputPassword2" placeholder="Descrição" formControlName="descricao">
+      </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary mb-3">Enviar</button>
+    </div>
+</form>
+
+<h4>listas de tarefas a se fazer</h4>
+<table class="table table-dark table-striped-columns mt-3" >
+    <thead>
+      <tr>  
+        <th scope="col">ID</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Descrição</th>
+        <th scope="col">Data</th>
+        <th scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+        @for (item of tarefas; track $index){
+            <tr>
+                <th scope="row">{{item.id}}</th>
+                <td>{{item.nome}}</td>
+                <td>{{item.descricao}}</td>
+                <td>{{data | date : 'dd/MM/yyyy HH:mm'}}</td>
+                <td><input type="button" value="remover" class="btn btn-danger" (click)="removerTarefa(item.id)"/></td>
+            </tr>
+        }
+      
+    </tbody>
+</table>
+
+</div>
+
